@@ -687,7 +687,7 @@ We know you love servers by Hewlett Packard Enterprise (HPE) for their security 
 
 Another major change is in the default login method - Virtual NIC (<a href="https://servermanagementportal.ext.hpe.com/docs/redfishservices/ilos/supplementdocuments/vnic/#the-ilo-redfish-host-interface-virtual-nic" target="_blank">VNIC</a>) replaces the <a href="https://servermanagementportal.ext.hpe.com/docs/etc/glossaryterms/" target="_blank">CHIF</a> interface, which was used in iLO 6 and earlier versions.
 
-In this article, I'll walk you through how to manage HPE iLO 7 using the iLOrest 6.0 tool via in-band access. We’ll start by **installing <a href="https://github.com/HewlettPackard/python-redfish-utility/releases/latest" target="_blank">iLOrest</a>** on different operating systems and then dive into **logging into iLO 7**. Since **iLO 7 introduces a new <a href="https://servermanagementportal.ext.hpe.com/docs/redfishservices/ilos/supplementdocuments/securityservice/#application-accounts" target="_blank">application account</a> login method**, I’ll also cover how iLOrest 6.0 fully supports this feature.
+In this article, I'll walk you through how to manage HPE iLO 7 using the iLOrest 6.0 tool via in-band access. We’ll start by installing <a href="https://github.com/HewlettPackard/python-redfish-utility/releases/latest" target="_blank">iLOrest</a> on different operating systems and then dive into logging into iLO 7. Since iLO 7 introduces a new <a href="https://servermanagementportal.ext.hpe.com/docs/redfishservices/ilos/supplementdocuments/securityservice/#application-accounts" target="_blank">application account</a> login method, I’ll also cover how iLOrest 6.0 fully supports this feature.
 
 Let’s get started! 🚀
 
@@ -735,6 +735,7 @@ Here’s a screenshot of the Application account creation dialog box during inst
 ### All other OSes:
 
 On operating systems like Ubuntu and the macOS, the iLOrest tool can be installed effortlessly via PyPI using the following command:
+
 ```bash
 pip install ilorest
 ```
@@ -747,16 +748,19 @@ esxcli software component apply -d ilorest-component.zip
 #### Creating an Application account
 
 For these OSes, you can create an Application account using the following iLOrest command:
+
 ```bash
 ilorest appaccount create -u ilo-user -p password --self
 ```
 #### Logging into iLO 7
 
 Once the Application account is created, you can perform an inband login with:
+
 ```bash
 ilorest login
 ```
 If you prefer to log in without using an Application account, you can opt for credential-based login instead:
+
 ```bash
 ilorest login --no_app_account -u ilo-user -p password
 ```
